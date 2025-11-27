@@ -1,19 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Site from './pages/Site';
-import Sobre from './pages/Sobre';
-import Contato from './pages/Contato';
+// Importa a versão CSS do Login
+import Login from "./components/css/Login.jsx";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Site />} />
-
-        <Route path="/sobre" element={<Sobre />} />
-        <Route path="/contato" element={<Contato />} />
-      </Routes>
-    </Router>
+    <>
+      <Login />
+    </>
   );
 }
 
