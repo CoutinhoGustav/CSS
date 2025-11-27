@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Consultas from './pages/Consultas';
 import Perfil from './pages/Perfil';
+import Cadastro from './pages/Cadastro';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="consultas" element={<Consultas />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
     </Router>
   );

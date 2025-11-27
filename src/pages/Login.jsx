@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../pages/css/Login.css';
 
 const Login = () => {
-  const [cpf, setCpf] = useState('');
+  const [documento, setDocumento] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
 
+  // Tema claro/escuro
   useEffect(() => {
     const themeChangeIcon = document.getElementById('themeChangeIcon');
 
@@ -41,31 +42,26 @@ const Login = () => {
     };
   }, []);
 
-  // Função para aplicar máscara de CPF
-  const formatCpf = (value) => {
-    const cleaned = value.replace(/\D/g, '').slice(0, 11); // Remove tudo que não é número
-    const formatted = cleaned
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    return formatted;
-  };
-
-  const handleCpfChange = (e) => {
-    const value = e.target.value;
-    const formatted = formatCpf(value);
-    setCpf(formatted);
+  // Sem máscara — apenas salva o valor digitado
+  const handleDocumentoChange = (e) => {
+    setDocumento(e.target.value.replace(/\D/g, '')); // mantém só números
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const cpfSemFormatacao = cpf.replace(/\D/g, '');
-    if (cpfSemFormatacao === '12345678900' && senha === '1234') {
-      alert('Login efetuado!');
+    const docLimpo = documento.replace(/\D/g, ''); // garante sem formatação
+    const users = JSON.parse(localStorage.getItem('usuarios') || '[]');
+
+    const user = users.find(
+      (u) => u.documento === docLimpo && u.senha === senha
+    );
+
+    if (user) {
+      alert(`Bem-vindo(a), ${user.nome}`);
       navigate('/dashboard');
     } else {
-      alert('CPF ou senha inválidos!');
+      alert("Documento ou senha incorretos!");
     }
   };
 
@@ -73,6 +69,7 @@ const Login = () => {
     <div className="login-page">
       <div className="login-container">
         <form onSubmit={handleLogin}>
+          
           <div className="theme-change">
             <i className="fa-solid fa-moon" id="themeChangeIcon"></i>
           </div>
@@ -86,31 +83,34 @@ const Login = () => {
           <h2>Login</h2>
 
           <div className="input-group">
-            <label htmlFor="cpf">CPF</label>
+            <label>CPF ou CNPJ</label>
             <input
               type="text"
-              id="cpf"
-              placeholder="000.000.000-00"
-              value={cpf}
-              onChange={handleCpfChange}
-              maxLength="14"
+              value={documento}
+              onChange={handleDocumentoChange}
+              placeholder="Somente números"
+              maxLength={14} // 11 CPF, 14 CNPJ
               required
             />
           </div>
 
           <div className="input-group">
-            <label htmlFor="senha">Senha</label>
+            <label>Senha</label>
             <input
               type="password"
-              id="senha"
-              placeholder="Digite sua senha"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
+              placeholder="Digite sua senha"
               required
             />
           </div>
 
           <button type="submit">Entrar</button>
+
+          <div className="register-link">
+            <p>Ainda não tem conta?</p>
+            <Link to="/cadastro">Cadastrar-se</Link>
+          </div>
         </form>
       </div>
     </div>
