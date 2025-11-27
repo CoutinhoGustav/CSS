@@ -42,11 +42,7 @@ export default function Site() {
                 Home
               </Link>
             </li>
-            <li>
-              <Link to="/servicos" onClick={handleLinkClick}>
-                Serviços
-              </Link>
-            </li>
+            
             <li>
               <Link to="/sobre" onClick={handleLinkClick}>
                 Sobre
@@ -79,7 +75,7 @@ export default function Site() {
         <div className="hero-content">
           <p className="content-header">Bem-vindo(a)</p>
           <p className="content-body">
-            Nós somos o Consulta Saúde+ fundado desde 2025.
+            Nós somos o Consulta Saúde+ fundado desde 2005.
             <br />
             <span>
               Fazemos atendimentos de segunda a sexta, das 8h às 18h, e aos
@@ -89,7 +85,7 @@ export default function Site() {
             <span>Deseja agendar uma consulta? Clique no botão abaixo.</span>
           </p>
           <div className="hero-btn">
-            <Link to="/login">
+            <Link to="/">
               <button className="resume-btn">Agende sua Consulta</button>
             </Link>
           </div>
@@ -99,8 +95,7 @@ export default function Site() {
           <img
             src="https://raw.githubusercontent.com/CoutinhoGustav/pc3/main/src/assets/img/ImagemExemploConsultorio.jpg"
             alt="Imagem do Consultório Médico"
-            className="main-img protected-image"
-          />
+            className="main-img protected-image"/>
         </div>
       </section>
     </div>

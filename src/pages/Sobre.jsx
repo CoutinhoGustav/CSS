@@ -43,11 +43,8 @@ export default function Sobre() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/servicos">Serviços</Link>
-            </li>
             <li className="active">
-              <Link to="/sobre">Sobre Nós</Link>
+              <Link to="/sobre">Sobre</Link>
             </li>
             <li>
               <Link to="/contato">Contato</Link>
